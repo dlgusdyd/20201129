@@ -36,7 +36,7 @@
     <div id="app">
         {{ message }}
         <!-- 버튼 기능 추가-->
-
+        <button v-on:click="change" style="display:block; width:100px; height:50px; background-color:#000; color:#fff;">버튼</button>
     </div>
 
     
@@ -44,4 +44,55 @@
 
 </html>
 
+
 <!-- vue 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">/* vue 플러그인 임포트 */</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"> /* JSX를 자바스크립트로 변환 */</script>
+<script src="https://unpkg.com/vuex@3.3.0/dist/vuex.js"> /* vuex 플러그인 임포트 */</script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"> /* axios 플러그인 임포트 */</script>
+<script src="https://unpkg.com/vue-router@3.1.6/dist/vue-router.js"> /* vue 라우터 플러그인 임포트 */</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> /* jQuery library */</script>
+<script>
+    
+    var vm = new Vue({
+        /* edtmc^2w */
+        el: "#app",
+        data: {
+            message:'내 이름은',
+        },
+        //template: ``,
+        methods: {
+            change:function(event){
+                //console.log(event.target);
+                this.$set(this.$data,'message','이현용');
+            }
+        },
+        components: {
+    
+        }, 
+        computed: {
+    
+        },
+        watch: {
+    
+        },
+        beforecreated:function() {
+            console.log("beforecreated");
+        },
+        created:function() {
+            console.log("created");
+        },
+        beforemounted: function() {
+            console.log("beforemounted");
+        },
+        mounted: function() {
+            console.log("mounted");
+        },
+        beforeupdated: function() {
+            console.log("beforeupdated");
+        },
+        updated: function() {
+            console.log("updated");
+        },
+    });
+</script>
