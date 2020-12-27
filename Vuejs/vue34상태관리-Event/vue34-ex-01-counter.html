@@ -28,13 +28,11 @@
 </head>
 
 <body>
+    <h2>Parent 컴포넌트와 Child 컴포넌트가 표시된 화면</h2>
+    <img src="../images/vue-sample-counter.png" alt="" srcset="" style="padding-left: 30px;">
+
     <xmp>
-
         props 와 이벤트를 사용하예 아래 예제를 작성한다.
-
-        Parent 컴포넌트와 Child 컴포넌트가 표시된 화면
-
-        <img src="../images/vue-sample-counter.png" alt="" srcset="">
 
         컴포넌트 구성
           Parent 컴포넌트 ==> 인스턴스
@@ -98,3 +96,86 @@
 </html>
 
 <!-- vue 플러그인 임포트   -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"> /* JSX를 자바스크립트로 변환 */</script>
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">/* vue 플러그인 임포트 */</script>
+<script src="https://unpkg.com/vuex@3.3.0/dist/vuex.js"> /* vuex 플러그인 임포트 */</script>
+<script src="https://unpkg.com/vue-router@3.1.6/dist/vue-router.js"> /* vue 라우터 플러그인 임포트 */</script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"> /* axios 플러그인 임포트 */</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> /* jQuery library */</script>
+<script>
+    var componentChild = { 
+        /* pdtmc^2w */
+        props: ["num"] ,
+        data: function() {
+            return { }
+        },
+        template: `
+          <div class="component-child">
+              Child counter : {{ num }} <br>
+              <button name="child" v-on:click="addCounter">+</button>
+              <button name="child" v-on:click="subCounter">-</button>
+          </div>
+        `,
+        methods: {
+            addCounter: function(event){
+                console.log(event.target);
+                // 이벤트 발생시키기
+                // 부모는 2개의 인자를 달라고 한다. 
+                this.$emit( "add-counter", event,  +1)
+            },
+            subCounter: function (event) {
+                console.log(event.target);
+                // 이벤트 발생시키기
+                // 부모는 2개의 인자를 달라고 한다. 
+                this.$emit("sub-counter", event, -1)
+            },
+        },
+        components: {
+    
+        },
+        computed: {
+    
+        },
+        watch: {
+    
+        },
+    };
+    
+
+    new Vue({
+        /* edtmc^2w */
+        el: "#app",
+        data: {
+            counter: 0,
+        },
+        //template: ``,
+        methods: {
+            addCounter: function(event, param){
+                //this.$data.counter = this.$data.counter + param;
+                this.$set(this.$data, "counter", this.$data.counter + param )
+            },
+            subCounter: function (event, param) {
+                //this.$data.counter = this.$data.counter + param;
+                this.$set(this.$data, "counter", this.$data.counter + param)
+            },
+        },
+        components: {
+            /* 인스턴스가 사용할 컴포넌트 등록 */
+            "component-child" : componentChild
+        }, 
+        computed: {
+    
+        },
+        watch: {
+    
+        },
+        mounted: function() {
+            console.log("mounted");
+        },
+        updated: function() {
+            console.log("updated");
+        },
+    });
+    
+    
+</script>

@@ -39,13 +39,24 @@
             { text: 'Three', value: 'C' }
         ];
 
+        1. objarray 에 { text: 'Four', value: 'D' } 를
+        추가하시오.
+        ==> create
+        2. objarray 에서 { text: 'Two', value: 'B' } 를
+        { text: '2', value: '2' } 로 바꾸시오.
+        ==> update
+        3. objarray 에서 { text: 'Three', value: 'C' } 를
+        삭제하시오.
+        ==> delete
+        4. objarray 에서 text가 'One' 객체들을 찾으시오
+        ==> search
+
     </xmp>
 </body>
 
 </html>
-<script>
-    
 
+<script>
     var objarray = [
         { text: 'One', value: 'A' },
         { text: 'Two', value: 'B' },
@@ -57,7 +68,6 @@
     objarray.push({ text: 'Four', value: 'D' });
 
     //2. objarray 에서 { text: 'Two', value: 'B' } 를 { text: '2', value: '2' } 로 바꾸시오. ==> update
-    //2-1. 찾고 바꾸기 
     objarray[1] = { text: '2', value: '2' }
 
     objarray[1].text = '2';
@@ -65,8 +75,6 @@
 
     //3. objarray 에서 { text: 'Three', value: 'C' } 를 삭제하시오. ==> delete
     objarray.splice(2,1)
-
-    //debugger
     
     //4. objarray 에서 text가 'One' 객체들을 찾으시오 ==> search
     var arrOne = [];
@@ -91,7 +99,28 @@
         }
     })
     console.log("arrOne2", arrOne2 )// [{ text: 'One', value: 'A' }]
+    
+    
+    for(index in objarray) {
+        debugger;
+        var option = objarray[index];
+        console.log("text:>> " + option.text, "value:>>" + option.value);
 
+        console.log("text:>> " + option["text"], "value:>>" + option["value"]);
+    }
 
+    for(option of objarray) {
+        debugger;
+
+        console.log("text:>> " + option.text, "value:>>" + option.value);
+        console.log("text:>> " + option["text"], "value:>>" + option["value"]);
+    }
+
+    // map 함수를 사용하여 프로퍼티 추가
+    var newopt = objarray.map(function (obj, index) {
+        obj["no"] = index;
+        return obj;
+    });
+    console.log(newopt);  // [  { text:"", value:"", no:"" },  { text:"", value:"", no:"" },  { text:"", value:"", no:"" } ]
 
 </script>
